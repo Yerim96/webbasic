@@ -24,21 +24,20 @@
 		
 			function fun2() {
 				console.log(event.type);
-				
 				if(event.type ==="mouseenter"){
-					//$(event.target).css("background-color","red"); //종류를 얻어서 제이쿼리로 바꾸기
+					$(event.target).css("background-color","tomato"); //종류를 얻어서 제이쿼리로 바꾸기
 					//$(event.target).removeClass("bg-success"); //종류를 얻어서 제이쿼리로 바꾸기
-					$(event.target).addClass("bg-danger"); //종류를 얻어서 제이쿼리로 바꾸기
+					//$(event.target).addClass("bg-danger"); //종류를 얻어서 제이쿼리로 바꾸기
 					
 				}else if(event.type ==="mouseleave"){
-					//$(event.target).css("background-color","green"); //종류를 얻어서 제이쿼리로 바꾸기
-					$(event.target).removeClass("bg-success"); //종류를 얻어서 제이쿼리로 바꾸기
+					$(event.target).css("background-color","green"); //종류를 얻어서 제이쿼리로 바꾸기
+					//$(event.target).removeClass("bg-success"); //종류를 얻어서 제이쿼리로 바꾸기
 					//$(event.target).addClass("bg-danger"); //종류를 얻어서 제이쿼리로 바꾸기
 					
 				}
 				
 			}
-			var isValidatedLoginData=true; //전역변수
+			//var isValidatedLoginData=true; //전역변수
 			
 			function checkUserId(){
 				var userId = $("#userId").val();
@@ -52,14 +51,17 @@
 				var userPass= $("#userPass").val();
 				console.log(userPass);
 				//포커싱이 된다면 유효성검사
-				//isValidatedLoginData=false;
+				//isValidatedLoginData=false; 
+				//유효성 검사 실행->문제가 있다:-> 전역변수 false
 			}
 			
+			//현재 버트은 submit가 아니라 그냥 누른다
 			function login() {
-				if(isValidatedLoginData){
+				if(isValidatedLoginData){ 
+					//해당 값을 true로 가지고 있다면
 					var loginForm = document.querySelector("#loginForm");
 					//자바스크립트  폼 submit제출 기능 호출
-					loginForm.submit(); //제이쿼리는 
+					loginForm.submit(); //submit 기능을 가지도록 메소드를 사용한다.
 				}
 			}
 		</script>
@@ -70,18 +72,22 @@
       <div class="card-header">Event Handling</div>
 	      <div class="card-body">
 	      	<div class="border" 
-			      	style="width:100px; height:100px;"
+			      	style="width:100px; height:100px"
 			      	onclick="fun1()"
 			      	onmouseenter="fun2()"
 			      	onmouseleave="fun2()"></div>
 			<hr/>
-			<form id="LoginForm" action="#">
+			
+			
+			
+			
+			<form id="loginForm" action="#">
 				아이디:<input type="text" id="userId" name="userId" onfocusout="checkUserId()"/><br/>
-				비밀번호:<input type="text" id="userpass" name="userpass" onfocusout="checkUserPass()"/><br/>
+				비밀번호:<input type="text" id="userPass" name="userPass" onfocusout="checkUserPass()"/><br/>
 				<button type="button" onclick="login()">로그인</button>
 			</form>
+			
 	      	</div>
 		 </div>
-		</div>
 	</body>
 </html>
